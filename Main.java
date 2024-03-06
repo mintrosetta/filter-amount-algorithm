@@ -12,6 +12,7 @@ public class Main {
         remarks.add("ยกเลิกการหักคอม ฝ/ข ค่ะ ล/ค โอนเงินเข้ามาแล้ว 2,000...4 บาท ตั้งแต่วันที่ 11/5 ค่ะ ฝ/ข ส่งหลักฐานให้ทางบัญชีแล้ว รบกวนตัดยอดด้วยค่ะ");
         remarks.add("หักคอมฝ่ายขาย .85");
         remarks.add("ติดต่อเบอร์ 0800710622 หักคอมฝ่ายขาย 102.98 ย้อนหลัง ณ วันที่ 27/4/2020");
+        remarks.add("ส.12939 รวม 13900");
 
         System.out.println();
         for (String remark : remarks) {
@@ -53,7 +54,9 @@ public class Main {
                             }
 
                             if (isDot(rawAmountCharacter)) {
-                                score += 1;
+                                if (rawAmountIndex < rawAmount.length() - 1 && isNumber(rawAmount.charAt(rawAmountIndex + 1))) {
+                                    score += 1;
+                                }
                             }
 
                             if (isNumber(rawAmountCharacter)) {
