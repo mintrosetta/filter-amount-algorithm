@@ -11,6 +11,7 @@ public class Main {
         remarks.add("ยกเลิกการหักคอม ฝ/ข ค่ะ ล/ค โอนเงินเข้ามาแล้ว 2,000 บาท ตั้งแต่วันที่ 11/5 ค่ะ ฝ/ข ส่งหลักฐานให้ทางบัญชีแล้ว รบกวนตัดยอดด้วยค่ะ");
         remarks.add("ยกเลิกการหักคอม ฝ/ข ค่ะ ล/ค โอนเงินเข้ามาแล้ว 2,000...4 บาท ตั้งแต่วันที่ 11/5 ค่ะ ฝ/ข ส่งหลักฐานให้ทางบัญชีแล้ว รบกวนตัดยอดด้วยค่ะ");
         remarks.add("หักคอมฝ่ายขาย .85");
+        remarks.add("ติดต่อเบอร์ 0800710622 หักคอมฝ่ายขาย 102.98 ย้อนหลัง ณ วันที่ 27/4/2020");
 
         System.out.println();
         for (String remark : remarks) {
@@ -47,13 +48,20 @@ public class Main {
                         for (int rawAmountIndex = 0; rawAmountIndex < rawAmount.length(); rawAmountIndex++) {
                             char rawAmountCharacter = rawAmount.charAt(rawAmountIndex);
 
-                            if (!isNumber(rawAmountCharacter) && !isDot(rawAmountCharacter)
-                                    && !isComma(rawAmountCharacter)) {
+                            if (!isNumber(rawAmountCharacter) && !isDot(rawAmountCharacter) && !isComma(rawAmountCharacter)) {
                                 score -= 1;
                             }
 
-                            if (isDot(rawAmountCharacter))
+                            if (isDot(rawAmountCharacter)) {
                                 score += 1;
+                            }
+
+                            if (isNumber(rawAmountCharacter)) {
+                                if (rawAmountCharacter == '0' && rawAmountIndex == 0 && rawAmount.charAt(rawAmountIndex + 1) != '.') {
+                                    score -= 10;
+                                }
+                            }
+                                
                         }
 
                         if (score >= lastScore) {
@@ -93,6 +101,10 @@ public class Main {
 
     public static boolean isComma(char character) {
         return (character == ',');
+    }
+
+    public static boolean isPhoneNumber(String text) {
+        return false;
     }
 
     public static double convertToDouble(String text) {
